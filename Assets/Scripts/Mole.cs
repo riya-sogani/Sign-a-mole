@@ -26,6 +26,8 @@ public class Mole : MonoBehaviour
 
     private MoleType moleType;
 
+    public LogicScript logic;
+
     private void CreateNext()
     {
         int random = Random.Range(1, 6);
@@ -61,11 +63,11 @@ public class Mole : MonoBehaviour
     {
         if (hittable)
         {
-            
             spriteRenderer.sprite = moleHit;
             StopAllCoroutines();
             StartCoroutine(QuickHide());
             hittable = false;
+            logic.addScore();
         }
         
     }
@@ -125,6 +127,7 @@ public class Mole : MonoBehaviour
 
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         startPosition = new Vector2(transform.position.x, transform.position.y - 3.25f);
         endPosition = new Vector2(transform.position.x, transform.position.y);
         transform.localPosition = startPosition;
