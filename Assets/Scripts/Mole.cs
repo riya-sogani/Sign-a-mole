@@ -28,6 +28,7 @@ public class Mole : MonoBehaviour
 
     public LogicScript logic;
 
+    public CsvWriter csvWriter;
     private void CreateNext()
     {
         int random = Random.Range(1, 6);
@@ -68,6 +69,7 @@ public class Mole : MonoBehaviour
 
             if(moleType == MoleType.chicken)
             {
+                csvWriter.AddValue("chicken");
                 if(recognizedSign == "chicken")
                 {
                     answerMole();
@@ -75,6 +77,7 @@ public class Mole : MonoBehaviour
             }
             else if(moleType == MoleType.watch)
             {
+                csvWriter.AddValue("watch");
                 if(recognizedSign == "watch")
                 {
                     answerMole();
@@ -82,6 +85,7 @@ public class Mole : MonoBehaviour
             }
             else if(moleType == MoleType.hand)
             {
+                csvWriter.AddValue("hand");
                 if(recognizedSign == "hand")
                 {
                     answerMole();
@@ -89,6 +93,7 @@ public class Mole : MonoBehaviour
             }
             else if(moleType == MoleType.dance)
             {
+                csvWriter.AddValue("dance");
                 if(recognizedSign == "dance")
                 {
                     answerMole();
@@ -96,11 +101,13 @@ public class Mole : MonoBehaviour
             }
             else if(moleType == MoleType.sing)
             {
+                csvWriter.AddValue("sing");
                 if(recognizedSign == "sing")
                 {
                     answerMole();
                 }
             }
+            csvWriter.AddValue(recognizedSign);
         }
         
     }
@@ -170,6 +177,7 @@ public class Mole : MonoBehaviour
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        csvWriter = GameObject.FindGameObjectWithTag("Logic").GetComponent<CsvWriter>();
         startPosition = new Vector2(transform.position.x, transform.position.y - 3.25f);
         endPosition = new Vector2(transform.position.x, transform.position.y);
         transform.localPosition = startPosition;
