@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Engine;
 
 
 public class LogicScript : MonoBehaviour
@@ -16,7 +17,6 @@ public class LogicScript : MonoBehaviour
     public Text finalScore;
     public int playerScore;
     public Text scoreText;
-<<<<<<< HEAD
     public Button tryAgain;
     public Button pause;
     private int minScore = 0;
@@ -26,26 +26,33 @@ public class LogicScript : MonoBehaviour
     private bool ispaused = false;
     public GameObject pointer;
     private RectTransform rectTransform;
-=======
-
->>>>>>> parent of b1181d3 (Integrated recogniser)
+    private SimpleExecutionEngine engine;
+    public string recognizedSign = "";
 
     void Start()
     {
         // Start the timer
-<<<<<<< HEAD
         timer = 60f;
-=======
->>>>>>> parent of b1181d3 (Integrated recogniser)
         timerIsRunning = true;
         scoreCard.enabled = false;
         star1.enabled = false;
         star2.enabled = false;
         star3.enabled = false;
         finalScore.enabled = false;
+        engine = GameObject.Find("SimpleSLREngine").GetComponent<SimpleExecutionEngine>();
+        engine.recognizer.AddCallback("Sign", GetSign);
 
     }
+    public void RunRecognizer()
+    {
+        engine.buffer.TriggerCallbacks();  
+    }
 
+    public void GetSign(string sign)
+    {
+        recognizedSign = sign;
+    }
+    
     public void Pause()
     {
         if (ispaused == false){

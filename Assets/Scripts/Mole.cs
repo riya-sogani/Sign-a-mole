@@ -6,11 +6,11 @@ public class Mole : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Graphics")]
-    [SerializeField] private Sprite moleDad;
-    [SerializeField] private Sprite moleElephant;
-    [SerializeField] private Sprite moleRed;
-    [SerializeField] private Sprite moleWhere;
-    [SerializeField] private Sprite moleOwl;
+    [SerializeField] private Sprite moleChicken;
+    [SerializeField] private Sprite moleWatch;
+    [SerializeField] private Sprite moleSing;
+    [SerializeField] private Sprite moleHand;
+    [SerializeField] private Sprite moleDance;
     [SerializeField] private Sprite moleHit;
 
     public Vector2 startPosition; //= new Vector2(0f , -3.25f);
@@ -22,7 +22,7 @@ public class Mole : MonoBehaviour
 
     private bool hittable = true;
 
-    public enum MoleType {dad, elephant, owl, red, where};
+    public enum MoleType {chicken, watch, dance, sing, hand};
 
     private MoleType moleType;
 
@@ -33,28 +33,28 @@ public class Mole : MonoBehaviour
         int random = Random.Range(1, 6);
         if (random == 1)
         {
-            moleType = MoleType.dad;
-            spriteRenderer.sprite = moleDad;
+            moleType = MoleType.chicken;
+            spriteRenderer.sprite = moleChicken;
         }
         else if (random == 2)
         {
-            moleType = MoleType.elephant;
-            spriteRenderer.sprite = moleElephant;
+            moleType = MoleType.watch;
+            spriteRenderer.sprite = moleWatch;
         }
         else if (random == 3)
         {
-            moleType = MoleType.owl;
-            spriteRenderer.sprite = moleOwl;
+            moleType = MoleType.dance;
+            spriteRenderer.sprite = moleDance;
         }
         else if (random == 4)
         {
-            moleType = MoleType.red;
-            spriteRenderer.sprite = moleRed;
+            moleType = MoleType.sing;
+            spriteRenderer.sprite = moleSing;
         }
         else
         {
-            moleType = MoleType.where;
-            spriteRenderer.sprite = moleWhere;
+            moleType = MoleType.hand;
+            spriteRenderer.sprite = moleHand;
         }
         hittable = true;
     }
@@ -63,13 +63,55 @@ public class Mole : MonoBehaviour
     {
         if (hittable)
         {
-            spriteRenderer.sprite = moleHit;
-            StopAllCoroutines();
-            StartCoroutine(QuickHide());
-            hittable = false;
-            logic.addScore();
+            logic.RunRecognizer();
+            string recognizedSign = logic.recognizedSign;
+
+            if(moleType == MoleType.chicken)
+            {
+                if(recognizedSign == "chicken")
+                {
+                    answerMole();
+                }
+            }
+            else if(moleType == MoleType.watch)
+            {
+                if(recognizedSign == "watch")
+                {
+                    answerMole();
+                }
+            }
+            else if(moleType == MoleType.hand)
+            {
+                if(recognizedSign == "hand")
+                {
+                    answerMole();
+                }
+            }
+            else if(moleType == MoleType.dance)
+            {
+                if(recognizedSign == "dance")
+                {
+                    answerMole();
+                }
+            }
+            else if(moleType == MoleType.sing)
+            {
+                if(recognizedSign == "sing")
+                {
+                    answerMole();
+                }
+            }
         }
         
+    }
+
+    private void answerMole()
+    {
+        spriteRenderer.sprite = moleHit;
+        StopAllCoroutines();
+        StartCoroutine(QuickHide());
+        hittable = false;
+        logic.addScore();
     }
 
     private void Awake()
