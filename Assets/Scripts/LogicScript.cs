@@ -16,17 +16,50 @@ public class LogicScript : MonoBehaviour
     public Text finalScore;
     public int playerScore;
     public Text scoreText;
+<<<<<<< HEAD
+    public Button tryAgain;
+    public Button pause;
+    private int minScore = 0;
+    private int maxScore = 180;
+    private float minAngle = 0f;
+    private float maxAngle = 180f;
+    private bool ispaused = false;
+    public GameObject pointer;
+    private RectTransform rectTransform;
+=======
 
+>>>>>>> parent of b1181d3 (Integrated recogniser)
 
     void Start()
     {
         // Start the timer
+<<<<<<< HEAD
+        timer = 60f;
+=======
+>>>>>>> parent of b1181d3 (Integrated recogniser)
         timerIsRunning = true;
         scoreCard.enabled = false;
         star1.enabled = false;
         star2.enabled = false;
         star3.enabled = false;
         finalScore.enabled = false;
+
+    }
+
+    public void Pause()
+    {
+        if (ispaused == false){
+            ispaused = true;
+            Time.timeScale = 0;
+
+        }
+
+        if (ispaused)
+        {
+            ispaused = false;
+            Time.timeScale = 1;
+
+        }
 
     }
 
@@ -50,7 +83,7 @@ public class LogicScript : MonoBehaviour
         {
             star2.enabled = true;
         }
-        if (playerScore > 130)
+        if (playerScore > 150)
         {
             star3.enabled = true;
         }
