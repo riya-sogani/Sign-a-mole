@@ -26,7 +26,7 @@ public class LogicScript : MonoBehaviour
     private bool ispaused = false;
     public GameObject pointer;
     private RectTransform rectTransform;
-    private SimpleExecutionEngine engine;
+    public SimpleExecutionEngine engine;
     public string recognizedSign = "";
 
     void Start()
@@ -39,7 +39,8 @@ public class LogicScript : MonoBehaviour
         star2.enabled = false;
         star3.enabled = false;
         finalScore.enabled = false;
-        engine = GameObject.Find("SimpleSLREngine").GetComponent<SimpleExecutionEngine>();
+        //engine = GameObject.Find("SimpleSLREngine").GetComponent<SimpleExecutionEngine>();
+        Debug.Log("RECOGNIZER: " + engine.recognizer);
         engine.recognizer.AddCallback("Sign", GetSign);
 
     }
@@ -50,6 +51,7 @@ public class LogicScript : MonoBehaviour
 
     public void GetSign(string sign)
     {
+        Debug.Log("SIGN WAS GOTTEN: " + sign);
         recognizedSign = sign;
     }
     

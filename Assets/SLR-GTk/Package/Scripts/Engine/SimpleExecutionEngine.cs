@@ -14,10 +14,12 @@ namespace Engine {
     {
         [SerializeField] private Preview.UnityMpHandPreviewPainter screen;
         [SerializeField] private Camera.StreamCamera inputCamera;
+        [SerializeField] private LogicScript logicScript;
 
         public SLRTfLiteModel<string> recognizer;
         public Buffer<HandLandmarkerResult> buffer;
         public MediapipeHandModelManager posePredictor;
+
 
         [FormerlySerializedAs("_modelFile")] [SerializeField] private TextAsset modelFile;
         [FormerlySerializedAs("_mappingFile")] [SerializeField] private TextAsset mappingFile;
@@ -44,6 +46,8 @@ namespace Engine {
 
 
             recognizer = new SLRTfLiteModel<string>(modelFile, new List<string>(mapping));
+            //Ensures recognizer is active before trying to access it
+            logicScript.enabled = true;
             posePredictor = new MediapipeHandModelManager(mediapipeGraph.bytes, RunningMode.LIVE_STREAM);
 
             posePredictor.AddCallback("buffer", result =>

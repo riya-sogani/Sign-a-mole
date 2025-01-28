@@ -66,7 +66,7 @@ public class Mole : MonoBehaviour
         {
             logic.RunRecognizer();
             string recognizedSign = logic.recognizedSign;
-
+            Debug.Log("RECOGNIZED SIGN: " + recognizedSign);
             if(moleType == MoleType.chicken)
             {
                 csvWriter.AddValue("chicken");

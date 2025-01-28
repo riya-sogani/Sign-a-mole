@@ -60,9 +60,10 @@ namespace Camera {
                 // This happens on iOS and OSX device webcams!
                 _webcamControlShader.SetInt(_SwapBR, 0);
             }
-            // else {
-            //     throw new Exception("Unsupported graphics format from webcam: " + webCamTexture.graphicsFormat);
-            // }
+            else if(webCamTexture.graphicsFormat == GraphicsFormat.R8G8B8A8_SRGB);
+            else {
+                throw new Exception("Unsupported graphics format from webcam: " + webCamTexture.graphicsFormat);
+            }
         }
         
         public void Poll() {
