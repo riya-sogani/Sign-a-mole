@@ -15,7 +15,7 @@ public class Mole : MonoBehaviour
 
     public Vector2 startPosition; //= new Vector2(0f , -3.25f);
     private Vector2 endPosition; //= Vector2.zero;
-    private float showDuration = 1f;
+    private float showDuration = 3f;
     private float duration = 1f;
 
     private SpriteRenderer spriteRenderer;
@@ -108,6 +108,7 @@ public class Mole : MonoBehaviour
                 }
             }
             csvWriter.AddValue(recognizedSign);
+            csvWriter.NextRow();
         }
         
     }
@@ -182,7 +183,7 @@ public class Mole : MonoBehaviour
         endPosition = new Vector2(transform.position.x, transform.position.y);
         transform.localPosition = startPosition;
         float startInterval = Random.Range(1, 10);
-        float spawnInterval = Random.Range(5, 15);
+        float spawnInterval = Random.Range(10, 20);
         InvokeRepeating("Repetition", startInterval, spawnInterval);
         //StartCoroutine(ShowHide());
     }

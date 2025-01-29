@@ -96,6 +96,7 @@ public class LogicScript : MonoBehaviour
         {
             star3.enabled = true;
         }
+        GetComponent<CsvWriter>().WriteCsv();
     }
 
     void Update()

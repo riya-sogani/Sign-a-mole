@@ -61,9 +61,9 @@ namespace Camera {
                 _webcamControlShader.SetInt(_SwapBR, 0);
             }
             else if(webCamTexture.graphicsFormat == GraphicsFormat.R8G8B8A8_SRGB);
-            else {
-                throw new Exception("Unsupported graphics format from webcam: " + webCamTexture.graphicsFormat);
-            }
+            // else {
+            //     throw new Exception("Unsupported graphics format from webcam: " + webCamTexture.graphicsFormat);
+            // }
         }
         
         public void Poll() {
